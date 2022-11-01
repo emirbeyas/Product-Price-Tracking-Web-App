@@ -1,0 +1,75 @@
+﻿@model UrunTakip.Models.UrunlerVm
+
+@{
+    ViewBag.Title = "Urunler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/Css/Detay.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<div class="containerE">
+    <div class="col-xs-4 image-container">
+        <center><img src="@Model.urun.resimUrl" alt=""></center>
+    </div>
+
+    <div class="col-xs-8 info-container">
+        <h3>@Model.urun.urunAdi</h3>
+        <p>Satıcı: @Model.urun.satici</p>
+        <h2>@Model.urun.guncelFiyat TL</h2>
+
+        @if (Model.urun.puani != null)
+        {
+            <div style=" margin-bottom:10px;">
+                <h4 style="margin:0px; display:inline-block; margin-right:0px;">@Model.urun.puani</h4>
+                <i class="bi bi-star-fill" style="color: #FAD000; font-size:20px; margin-right:5px;"></i>
+                <p style="display:inline-block; margin:0">@Model.urun.degerlendirmeSayisi Değerlendirme</p>
+            </div>
+        }
+
+        <div class="takipEt">
+
+            <button type="submit" disabled class="followButton"><i class="bi bi-bell-fill" style="font-size:20px; color:black;" id="heard"></i></button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<h2>Fiyat Değişimi</h2>
+<div class="containerE" style="margin-top:30px; height:auto;">
+    <canvas id="myChart"></canvas>
+</div>
+
+
+<script>
+    var labels = @Html.Raw(Json.Encode(ViewBag.Tarihler));
+    var cdata = @Html.Raw(Json.Encode(ViewBag.Fiyatlar));
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Fiyat Değişimi',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: cdata,
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {}
+    };
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+
+    //----------------------------------------------------------------------------------------------------
+
+</script>

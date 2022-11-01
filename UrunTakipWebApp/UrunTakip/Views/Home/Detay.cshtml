@@ -1,0 +1,138 @@
+﻿@model UrunTakip.Scrap.UrunDetay
+
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/Css/Detay.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<div class="containerE">
+    <div class="col-xs-4 image-container">
+        <center><img src="@Model.ResimURL" alt=""></center>
+    </div>
+
+    <div class="col-xs-8 info-container">
+        <h3>@Model.Marka @Model.UrunAdi</h3>
+        <p>Satıcı: @Model.Satici</p>
+        <h2>@Model.Fiyat TL</h2>
+
+        @if (Model.UrunUrl.Split('.')[1] != "n11" && (Model.DegerlendirmePuani != null || Model.DegerlendirmeSayisi != 0))
+        {
+            <div style=" margin-bottom:10px;">
+                <h4 style="margin:0px; display:inline-block; margin-right:0px;">@Model.DegerlendirmePuani</h4>
+                <i class="bi bi-star-fill" style="color: #FAD000; font-size:20px; margin-right:5px;"></i>
+                <p style="display:inline-block; margin:0">@Model.DegerlendirmeSayisi Değerlendirme</p>
+            </div>
+        }
+        <div class="takipEt">
+
+            <form method="post">
+
+                <input name="urunLink" value="@Model.UrunUrl" hidden />
+                <input name="urunAdi" value="@Model.UrunAdi" hidden />
+                <input name="resimUrl" value="@Model.ResimURL" hidden />
+                <input name="satici" value="@Model.Satici" hidden />
+                <input name="puani" value="@Model.DegerlendirmePuani" hidden />
+                <input name="degerlendirmeSayisi" value="@Model.DegerlendirmeSayisi" hidden />
+                <input name="TblKullaniciID" value="@Session["LoginUser"]" hidden />
+                <input name="urunFiyat" value="@Model.Fiyat" hidden />
+
+                <input type="text" name="bildirimFiyat" value="" style="width:100px; border:1px solid black;" id="mySidenav" onkeypress='validate(event)' autocomplete="off" />
+
+                <button type="submit" class="followButton"><i class="bi bi-bell" style="font-size:20px; color:black;" id="heard"></i></button>
+
+
+            </form>
+
+        </div>
+        @if (Model.UrunUrl.Split('.')[1] == "n11")
+        {
+            <div class="containerE" style="height:243px; margin-top:16px; padding:5px; overflow-y:scroll;">
+                <h4 style="margin:5px; display:inline-block; margin-right:0px;">@Model.DegerlendirmePuani</h4>
+                <i class="bi bi-star-fill" style="color: #FAD000; font-size:20px; margin-right:5px;"></i>
+                <p style="display:inline-block; margin:0">@Model.DegerlendirmeSayisi Değerlendirme</p>
+                <hr style="margin:0" />
+
+                <ul style="padding:0; ">
+                    @foreach (var item in Model.commentList)
+                    {
+                        <li style="display:inline-block;">
+                            <div class="CommentRow">
+                                <p style="font-size:11px; margin-top:5px;">@item.yorum</p>
+                                <p>@item.tarih</p>
+
+                            </div>
+                            <hr style="margin:0" />
+                        </li>
+
+                    }
+                </ul>
+            </div>
+        }
+
+    </div>
+
+
+</div>
+
+
+<h2>Fiyat Değişimi</h2>
+<div class="containerE" style="margin-top:30px; height:auto;">
+    <canvas id="myChart"></canvas>
+</div>
+
+
+<script>
+
+
+    const labels = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+    ];
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Fiyat Değişimi',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 100, 500, 20, 200, 300, 450],
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {}
+    };
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+
+    //----------------------------------------------------------------------------------------------------
+
+    function validate(evt) {
+        var theEvent = evt || window.event;
+
+        if (theEvent.type === 'paste') {
+            key = event.clipboardData.getData('text/plain');
+        } else {
+
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+        }
+        var regex = /[0-9]|\./;
+        if (!regex.test(key)) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+</script>

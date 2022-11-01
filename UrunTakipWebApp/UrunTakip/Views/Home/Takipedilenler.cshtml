@@ -1,0 +1,103 @@
+﻿@using _1EntityLayer.Concrete
+@model List<tbl_Urunler>
+
+@{
+    ViewBag.Title = "Takipedilenler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/Css/takipedilen.css" rel="stylesheet" />
+</head>
+
+<h2>Takipedilenler</h2>
+
+
+<ul style="padding:15px;">
+
+    <li class="item-container" style="height:40px">
+        <div class="col-xs-1 item-colum" style="padding:0px;">
+
+
+
+        </div>
+        <div class="col-xs-3 item-colum">
+            <h5 style="margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); width:100%; text-align:center; ">Ürün Bilgileri</h5>
+
+        </div>
+        <div class="col-xs-2 item-colum">
+            <h5 style="margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); width:100%; text-align:center; ">Güncel Fiyat</h5>
+        </div>
+        <div class="col-xs-2 item-colum">
+            <h5 style="margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); width:100%; text-align:center; ">Bildirim Fiyat</h5>
+
+        </div>
+        <div class="col-xs-2 item-colum">
+            <h5 style="margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); width:100%; text-align:center; ">Tahmini Fiyat</h5>
+
+
+        </div>
+        <div class="col-xs-1 item-colum">
+            <h5 style="margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); width:100%; text-align:center; ">Fiyat Takip</h5>
+
+        </div>
+        <div class="col-xs-1 item-colum">
+            <h5 style="margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); width:100%; text-align:center; ">sil</h5>
+
+        </div>
+    </li>
+
+    @foreach (var item in Model)
+    {
+        if (Session["LoginUser"].Equals(item.TblKullaniciID))
+        {
+            <li class="item-container">
+                <div class="col-xs-1 item-colum" style="padding:0px;">
+                    <img src="@item.resimUrl" alt="Alternate Text" style="max-height:100px; width:100%; margin:15px 10px; object-fit:contain;" />
+
+                </div>
+                <div class="col-xs-3 item-colum">
+                    <h5 style="display:inline-block; height:30.5px; overflow-y:hidden;">@item.urunAdi</h5>
+                    <p>satıcı: @item.satici</p>
+                    <p>puanı: @item.puani</p>
+                    <p>değerlendirme: @item.degerlendirmeSayisi</p>
+                </div>
+                <div class="col-xs-2 item-colum">
+                    <h5 style="margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); width:100%; text-align:center; ">@item.guncelFiyat ₺</h5>
+                </div>
+                <div class="col-xs-2 item-colum">
+                    <h5 style="margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); width: 100%; text-align: center; ">@item.bildirimFiyat ₺</h5>
+                </div>
+                <div class="col-xs-2 item-colum">
+                    @if (item.tahminiFiyat == 0)
+                    {
+                        <i class="bi bi-question-circle" style="margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); width: 100%; text-align: center; font-size:14px; "></i>
+                    }
+                    else
+                    {
+                        <h5 style="margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); width: 100%; text-align: center; ">@item.bildirimFiyat ₺</h5>
+                    }
+
+                </div>
+                <div class="col-xs-1 item-colum">
+                    <a href="@Url.Action("Urunler", "Home", new { urunID = item.ID })">
+                        <i class="bi bi-graph-up" style="margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); font-size:14px; "></i>
+                    </a>
+                </div>
+                <div class="col-xs-1 item-colum">
+                    <a href="@Url.Action("Urunsil", "Home", new { urunID = item.ID })">
+                        <i class="bi bi-trash" style="margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); font-size:14px; "></i>
+                    </a>
+                </div>
+            </li>
+        }
+        
+    }
+
+
+
+
+
+
+</ul>
+

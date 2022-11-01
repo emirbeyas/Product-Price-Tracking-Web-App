@@ -1,0 +1,18 @@
+﻿.item-container{
+    width: 100%;
+    height:130px;
+    margin-bottom:15px;
+    list-style:none;
+    background-color: white;
+    border-radius:5px;
+}
+.item-colum{
+    height:100%;
+}
+.item-colum p{
+    margin:5px 0; 
+}
+.item-colum a{
+    text-decoration:none;
+    color:black;
+}

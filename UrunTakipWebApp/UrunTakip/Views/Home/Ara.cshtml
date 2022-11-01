@@ -1,0 +1,140 @@
+﻿@model UrunTakip.Models.UrunlerListViewModel
+
+@{
+    ViewBag.Title = "Ara";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/Css/Ara.css" rel="stylesheet" />
+</head>
+
+<div class="container">
+    <div class="wrapper col-xs-9">
+
+        <div class="products">
+            <ul style="padding:0;">
+                @foreach (var item in Model.trendyolUrunler)
+                {
+                    <li>
+                        <div class="product-container">
+                            <img src="@item.ResimURL" alt="" style="object-fit:contain;">
+                            
+                            <p class="product-Description">@item.UrunAdi</p>
+
+                            <p style="text-align: start; font-size: 18px; transition: .5s ease; ">@item.Fiyat ₺</p>
+
+                            <div class="takipEt">
+                                <a href="@Url.Action("Detay", "Home", new { url = item.UrunUrl, fiyat = item.Fiyat })" class="text">Ürüne Git</a>
+                            </div>
+                        </div>
+
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-3" style="background-color: orange; height: 270px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; padding: 0; border: 2px solid rgba(187, 179, 179, 0.2); ">
+        <img src="~/img/trendyol-logo.png" alt="Alternate Text" class="markaLogo" />
+    </div>
+
+    <div id="click2" onclick="clicked2(0)"><span class="left-arrow"></span></div>
+    <div id="click" onclick="clicked(0)"><span class="right-arrow"></span></div>
+
+</div>
+
+<div class="container">
+    <div class="wrapper col-xs-9">
+
+        <div class="products">
+            <ul style="padding:0;">
+                @foreach (var item in Model.gittigidiyorUrunler)
+                {
+                    <li>
+                        <div class="product-container">
+                            <img src="@item.ResimURL" alt="">
+
+                            <p class="product-Description">@item.UrunAdi</p>
+
+                            <p style="text-align: start; font-size: 18px; transition: .5s ease; ">@item.Fiyat ₺</p>
+
+                            <div class="takipEt">
+                                <a href="@Url.Action("Detay", "Home", new { url = item.UrunUrl, fiyat = item.Fiyat })" class="text">Ürüne Git</a>
+                            </div>
+                        </div>
+
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-3" style="background-color: white; height: 270px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; padding: 0; border: 2px solid rgba(187, 179, 179, 0.2); ">
+        <img src="~/img/unnamed.png" alt="Alternate Text" class="markaLogo" />
+    </div>
+
+    <div id="click2" onclick="clicked2(1)"><span class="left-arrow"></span></div>
+    <div id="click" onclick="clicked(1)"><span class="right-arrow"></span></div>
+
+</div>
+
+<div class="container">
+    <div class="wrapper col-xs-9">
+
+        <div class="products">
+            <ul style="padding:0;">
+                @foreach (var item in Model.N11Urunler)
+                {
+                    <li>
+                        <div class="product-container">
+                            <img src="@item.ResimURL" alt="">
+
+                            <p class="product-Description">@item.UrunAdi</p>
+
+                            <p style="text-align: start; font-size: 18px; transition: .5s ease; ">@item.Fiyat ₺</p>
+
+                            <div class="takipEt">
+                                <a href="@Url.Action("Detay", "Home", new { url = item.UrunUrl, fiyat = item.Fiyat })" class="text">Ürüne Git</a>
+                            </div>
+                        </div>
+
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-3" style="background-color: white; height: 270px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; padding: 0; border: 2px solid rgba(187, 179, 179, 0.2); ">
+        <img src="~/img/n11.png" alt="Alternate Text" class="markaLogo" />
+    </div>
+
+    <div id="click2" onclick="clicked2(2)"><span class="left-arrow"></span></div>
+    <div id="click" onclick="clicked(2)"><span class="right-arrow"></span></div>
+
+</div>
+
+
+<script>
+
+    function clicked(i) {
+        wrapper = document.getElementsByClassName('wrapper');
+        let scroll = [0, 1, 2];
+        scroll[i] = scroll[i] += 500;
+        wrapper[i].scrollTo({
+            left: scroll[i],
+            behavior: 'smooth'
+        });
+        scroll[i] = wrapper[i].scrollLeft + 50;
+        console.log(wrapper[i].scrollLeft);
+    }
+
+    function clicked2(i) {
+        wrapper = document.getElementsByClassName('wrapper');
+        let scroll = [0, 1, 2];
+        scroll[i] = scroll[i] -= 500;
+        wrapper[i].scrollTo({
+            left: scroll[i],
+            behavior: 'smooth'
+        });
+        scroll[i] = wrapper[i].scrollLeft + 50;
+        console.log(wrapper[i].scrollLeft);
+    }
+
+</script>

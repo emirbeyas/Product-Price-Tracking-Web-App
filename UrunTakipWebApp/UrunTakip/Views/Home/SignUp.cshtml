@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/Css/LoginRegister.css" rel="stylesheet" />
+</head>
+
+<div class="wrapper">
+    <form class="form-signin" method="post">
+        <h2 class="form-signin-heading">Kayıt Ol</h2>
+        @if (TempData["HATA"] != null)
+        {
+            <label style="color:red; font-size:14px;margin-bottom:10px;">@TempData["HATA"]</label>
+        }
+        <input type="text" class="form-control" name="eMail" placeholder="E-Mail" required="" autofocus="" />
+        <input type="password" class="form-control" name="sifre" placeholder="Şifre" required="" style="margin-bottom: -1px;" />
+        <input type="password" class="form-control" name="sifre2" placeholder="Şifre-Tekrar" required="" />
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="kayitol">Kayıt Ol</button>
+    </form>
+</div>

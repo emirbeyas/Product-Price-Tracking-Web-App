@@ -1,0 +1,11 @@
+C:\Users\Emir\source\repos\UrunTakip\1EntityLayer\bin\Debug\1EntityLayer.dll.config
+C:\Users\Emir\source\repos\UrunTakip\1EntityLayer\bin\Debug\1EntityLayer.dll
+C:\Users\Emir\source\repos\UrunTakip\1EntityLayer\bin\Debug\1EntityLayer.pdb
+C:\Users\Emir\source\repos\UrunTakip\1EntityLayer\bin\Debug\EntityFramework.dll
+C:\Users\Emir\source\repos\UrunTakip\1EntityLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Emir\source\repos\UrunTakip\1EntityLayer\bin\Debug\EntityFramework.xml
+C:\Users\Emir\source\repos\UrunTakip\1EntityLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Emir\source\repos\UrunTakip\1EntityLayer\obj\Debug\1EntityLayer.csproj.AssemblyReference.cache
+C:\Users\Emir\source\repos\UrunTakip\1EntityLayer\obj\Debug\1EntityLayer.csproj.CoreCompileInputs.cache
+C:\Users\Emir\source\repos\UrunTakip\1EntityLayer\obj\Debug\1EntityLayer.dll
+C:\Users\Emir\source\repos\UrunTakip\1EntityLayer\obj\Debug\1EntityLayer.pdb
